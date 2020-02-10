@@ -1,5 +1,6 @@
 <?php
 	header("Access-Control-Allow-Origin: *");
+	header("Access-Control-Allow-Methods: GET, POST");
 	$data = json_decode(file_get_contents('tasks.json'), true);
 	$id = end($data)['id']+1;
 	$data[$id] = ['id' => $id, 'text' => $_GET['text'], 'checked' => false];
