@@ -1,4 +1,5 @@
 <?php 
+	header("Access-Control-Allow-Origin: *");
 	$data = json_decode(file_get_contents('tasks.json'), true);
 	$output['ok'] = false;
 	$i = 0;
