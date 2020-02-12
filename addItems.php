@@ -13,7 +13,7 @@
 		} else {
 			throw new Exception("Bad Input Data");
 		}
-	} catch ($e) {
+	} catch (Exception $e) {
 		header('HTTP/2 400 Error Processing Request');
 		$err = ['error' => "<h1>".$e->getMessage()."</h1><p>Input Data: ".json_encode($_GET)."</p>"];
 		echo json_encode($err);

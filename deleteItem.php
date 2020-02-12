@@ -2,6 +2,7 @@
 	require_once 'err-handler';
 	header("Access-Control-Allow-Origin: *");
 	header("Access-Control-Allow-Methods: GET, POST");
+	try {
 		if (isset($_GET['id']) && $_GET['id'] != undefined) {
 			$data = json_decode(file_get_contents('tasks.json'), true);
 			$output['ok'] = false;
@@ -19,7 +20,7 @@
 		} else {
 			throw new Exception("Bad Input Data");
 		}
-	} catch ($e) {
+	} catch (Exception $e) {
 		header('HTTP/2 400 Error Processing Request');
 		$err = ['error' => "<h1>".$e->getMessage()."</h1><p>Input Data: ".json_encode($_GET)."</p>"];
 		echo json_encode($err);
