@@ -1,5 +1,5 @@
 <?php
-	require_once = 'err-handler';
+	require_once 'err-handler';
 	header("Access-Control-Allow-Origin: *");
 	header("Access-Control-Allow-Methods: GET, POST");
 		if (isset($_GET['id']) && $_GET['id'] != undefined) {
