@@ -3,7 +3,7 @@
 	header("Access-Control-Allow-Origin: *");
 	header("Access-Control-Allow-Methods: GET, POST");
 	try {
-		if (isset($_GET['id']) && isset($_GET['text']) && isset($_GET['checked'])) {
+		if (isset($_GET['id']) && isset($_GET['text']) && isset($_GET['checked']) && $_GET['id'] != undefined && $_GET['text'] != undefined && $_GET['checked'] != undefined) {
 			$data = json_decode(file_get_contents('tasks.json'), true);
 			$i = 0;
 			$output['ok'] = false;
