@@ -4,8 +4,8 @@
 	$data = json_decode(file_get_contents('tasks.json'), true);
 	$i = 0;
 	$output['ok'] = false;
-	foreach ($data as $key => $value) {
-		if ($value['id'] === $_GET['id']) {
+	foreach ($data as $key => $subArr) {
+		if ($subArr['id'] === intval($_GET['id'])) {
 			$data[$i] = ['id' => intval($_GET['id']), 'text' => $_GET['text'], 'checked' => filter_var($_GET['checked'], FILTER_VALIDATE_BOOLEAN)];
 			$output['ok'] = true;
 			break;
