@@ -1,9 +1,9 @@
 <?php
-	require_once 'err-handler.php';
 	header("Access-Control-Allow-Origin: *");
 	header("Access-Control-Allow-Methods: GET, POST");
 	try {
-		if (isset($_GET['id']) && isset($_GET['text']) && isset($_GET['checked']) && $_GET['id'] != undefined && $_GET['text'] != undefined && $_GET['checked'] != undefined) {
+		if ($_GET['id'] >= 0 && $_GET['text'] != undefined && $_GET['checked'] != undefined) {
+			require_once 'err-handler.php';
 			$data = json_decode(file_get_contents('tasks.json'), true);
 			$i = 0;
 			$output['ok'] = false;
