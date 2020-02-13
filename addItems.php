@@ -1,6 +1,7 @@
 <?php
 	header("Access-Control-Allow-Origin: *");
 	header("Access-Control-Allow-Methods: GET, POST");
+	$_GET['text'] = htmlspecialchars($_GET['text']);
 	try {
 		if (isset($_GET['text']) && $_GET['text'] != undefined && $_GET['text'] != "") {
 			require_once 'err-handler.php';
