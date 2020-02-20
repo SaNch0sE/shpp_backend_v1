@@ -1,13 +1,14 @@
 <?php
 	header("Access-Control-Allow-Origin: *");
-	header("Access-Control-Allow-Methods: GET, POST");
-	$_GET['text'] = htmlspecialchars($_GET['text']);
+	header("Access-Control-Allow-Methods: POST");
+	$data = json_decode(file_get_contents('php://input'), true);
+	$text = htmlspecialchars($data['text']);
 	try {
-		if (isset($_GET['text']) && $_GET['text'] != undefined && $_GET['text'] != "") {
+		if (isset($text) && $text != undefined && $text != "") {
 			require_once 'err-handler.php';
 			$data = json_decode(file_get_contents('tasks.json'), true);
 			$id = end($data)['id']+1;
-			$data[$id] = ['id' => $id, 'text' => $_GET['text'], 'checked' => false];
+			$data[$id] = ['id' => $id, 'text' => $text, 'checked' => false];
 			$data = array_values($data);
 			file_put_contents('tasks.json', json_encode($data));
 			echo json_encode(['id' => $id]);

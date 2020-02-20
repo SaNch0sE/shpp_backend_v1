@@ -1,15 +1,19 @@
 <?php
 	header("Access-Control-Allow-Origin: *");
-	header("Access-Control-Allow-Methods: GET, POST");
+	header("Access-Control-Allow-Methods: POST");
+	$data = json_decode(file_get_contents('php://input'), true);
+	$text = htmlspecialchars($data['text']);
+	$checked = htmlspecialchars($data['checked']);
+	$id = htmlspecialchars($data['id']);
 	try {
-		if ($_GET['id'] >= 0 && $_GET['text'] != undefined && $_GET['checked'] != undefined) {
+		if ($id >= 0 && $text != undefined && $checked != undefined && ($checked|| $checked == false)) {
 			require_once 'err-handler.php';
 			$data = json_decode(file_get_contents('tasks.json'), true);
 			$i = 0;
 			$output['ok'] = false;
 			foreach ($data as $key => $subArr) {
-				if ($subArr['id'] === intval($_GET['id'])) {
-					$data[$i] = ['id' => intval($_GET['id']), 'text' => $_GET['text'], 'checked' => filter_var($_GET['checked'], FILTER_VALIDATE_BOOLEAN)];
+				if ($subArr['id'] === intval($id)) {
+					$data[$i] = ['id' => intval($id), 'text' => $text, 'checked' => filter_var($checked, FILTER_VALIDATE_BOOLEAN)];
 					$output['ok'] = true;
 					break;
 				}

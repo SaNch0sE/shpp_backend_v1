@@ -1,21 +1,23 @@
 <?php
 	header("Access-Control-Allow-Origin: *");
 	header("Access-Control-Allow-Methods: GET, POST");
+	$data = json_decode(file_get_contents('php://input'), true);
+	$id = htmlspecialchars($data['id']);
 	try {
-		if (is_int($_GET['id']) && $_GET['id'] >= 0) {
+		if (is_int($id) && $id >= 0) {
 			require_once 'err-handler.php';
-			$data = json_decode(file_get_contents('tasks.json'), true);
+			$db = json_decode(file_get_contents('tasks.json'), true);
 			$output['ok'] = false;
 			$i = 0;
-			foreach ($data as $key => $subArr) {
-				if ($subArr['id'] === intval($_GET['id'])) {
-					unset($data[$i]);
-					$data = array_values($data);
+			foreach ($db as $key => $subArr) {
+				if ($subArr['id'] === intval($id)) {
+					unset($db[$i]);
+					$db = array_values($db);
 					$output['ok'] = true;
 				}
 				$i += 1;
 			}
-			file_put_contents('tasks.json', json_encode($data));
+			file_put_contents('tasks.json', json_encode($db));
 			echo json_encode($output);
 		} else {
 			throw new Exception("Bad Input Data");
