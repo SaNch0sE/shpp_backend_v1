@@ -1,12 +1,12 @@
 <?php
+	require_once 'err-handler.php';
 	header("Access-Control-Allow-Origin: *");
 	header("Access-Control-Allow-Methods: GET, POST");
 	$data = json_decode(file_get_contents('php://input'), true);
-	$id = htmlspecialchars($data['id']);
+	$id = intval(htmlspecialchars($data['id']));
 	try {
-		if (is_int($id) && $id >= 0) {
-			require_once 'err-handler.php';
-			$db = json_decode(file_get_contents('tasks.json'), true);
+		$db = json_decode(file_get_contents('tasks.json'), true);
+		if ($id >= 0 && $id <= end($db)['id']) {
 			$output['ok'] = false;
 			$i = 0;
 			foreach ($db as $key => $subArr) {
@@ -24,6 +24,6 @@
 		}
 	} catch (Exception $e) {
 		header('HTTP/2 400 Error Processing Request');
-		$err = ['error' => "<h1>".$e->getMessage()."</h1><p>Input Data: ".json_encode($_GET)."</p>"];
+		$err = ['error' => "<h1>".$e->getMessage()."</h1><p>Input Data: ".json_encode($data)."</p>"];
 		echo json_encode($err);
 	}
