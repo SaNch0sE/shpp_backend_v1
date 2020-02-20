@@ -1,7 +1,6 @@
 <?php 
     header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Methods: POST, OPTIONS");
-    header ("Access-Control-Expose-Headers: Content-Type, X-JSON");
+    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
     header ("Access-Control-Allow-Headers: *");
 	error_reporting(E_ALL & ~E_NOTICE);
     ini_set('display_errors', 1);
