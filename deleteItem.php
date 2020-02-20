@@ -1,7 +1,5 @@
 <?php
 	require_once 'err-handler.php';
-	header("Access-Control-Allow-Origin: *");
-	header("Access-Control-Allow-Methods: GET, POST");
 	$data = json_decode(file_get_contents('php://input'), true);
 	$id = intval(htmlspecialchars($data['id']));
 	try {

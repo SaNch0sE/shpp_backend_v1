@@ -1,11 +1,9 @@
 <?php
-	header("Access-Control-Allow-Origin: *");
-	header("Access-Control-Allow-Methods: POST");
+	require_once 'err-handler.php';
 	$data = json_decode(file_get_contents('php://input'), true);
 	$text = htmlspecialchars($data['text']);
 	try {
 		if (isset($text) && $text != undefined && $text != "") {
-			require_once 'err-handler.php';
 			$data = json_decode(file_get_contents('tasks.json'), true);
 			$id = end($data)['id']+1;
 			$data[$id] = ['id' => $id, 'text' => $text, 'checked' => false];
