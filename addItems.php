@@ -3,7 +3,7 @@
 	$data = json_decode(file_get_contents('php://input'), true);
 	$text = htmlspecialchars($data['text']);
 	try {
-		if (isset($text) && $text != undefined && $text != "") {
+		if (isset($text) && $text != "") {
 			$data = json_decode(file_get_contents('tasks.json'), true);
 			$id = end($data)['id']+1;
 			$data[$id] = ['id' => $id, 'text' => $text, 'checked' => false];
