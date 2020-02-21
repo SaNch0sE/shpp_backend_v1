@@ -5,7 +5,7 @@
 	$checked = htmlspecialchars($data['checked']);
 	$id = htmlspecialchars($data['id']);
 	try {
-		if ($id >= 0 && $text != undefined && $checked != undefined && ($checked|| $checked == false)) {
+		if ($id >= 0 && ($checked|| $checked == false)) {
 			$data = json_decode(file_get_contents('tasks.json'), true);
 			$i = 0;
 			$output['ok'] = false;
