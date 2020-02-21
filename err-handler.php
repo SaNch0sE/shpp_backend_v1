@@ -1,6 +1,6 @@
 <?php 
     header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Methods: OPTIONS, POST, GET");
+    header("Access-Control-Allow-Methods: OPTIONS, POST, GET, x-http-method-override");
 	error_reporting(E_ALL & ~E_NOTICE);
     ini_set('display_errors', 1);
     function excepHandler($exception) {
